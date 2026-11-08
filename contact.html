@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>183746 - Timaa Feras Al-latayfeh | Contact Me</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Pixelify+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="menu">
+    <a href="index.html">Home</a>
+    <a href="contact.html" class="active">Contact Me</a>
+  </nav>
+
+  <main>
+    <section class="window">
+      <div class="window-title">send_message.exe</div>
+      <div class="window-body">
+        <h1>Contact Me</h1>
+        <p>Have a question or an idea for a game project? Fill in the form and send me a message.</p>
+
+        <form id="contactForm" novalidate>
+          <div>
+            <label for="fullname">Full name</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Your full name">
+            <span class="error-msg" id="fullnameError"></span>
+          </div>
+
+          <div>
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="name@example.com">
+            <span class="error-msg" id="emailError"></span>
+          </div>
+
+          <div>
+            <label for="country">Country</label>
+            <select id="country" name="country">
+              <option value="">Select your country</option>
+              <option>Jordan</option>
+              <option>Saudi Arabia</option>
+              <option>United Arab Emirates</option>
+              <option>Palestine</option>
+              <option>Egypt</option>
+              <option>Iraq</option>
+              <option>Lebanon</option>
+              <option>Syria</option>
+              <option>Kuwait</option>
+              <option>Qatar</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Other</option>
+            </select>
+            <span class="error-msg" id="countryError"></span>
+          </div>
+
+          <div>
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" placeholder="Write your comments here"></textarea>
+            <span class="error-msg" id="commentsError"></span>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Timaa Feras Al-latayfeh | 183746 | JUST
+  </footer>
+
+  <script>
+    var form = document.getElementById("contactForm");
+
+    // Fields to check: id, error message
+    var fields = [
+      { id: "fullname", message: "Please enter your full name." },
+      { id: "email",    message: "Please enter your email address." },
+      { id: "country",  message: "Please select your country." },
+      { id: "comments", message: "Please write your comments." }
+    ];
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var allValid = true;
+
+      for (var i = 0; i < fields.length; i++) {
+        var input = document.getElementById(fields[i].id);
+        var error = document.getElementById(fields[i].id + "Error");
+        var value = input.value.trim();
+
+        error.textContent = "";
+        input.classList.remove("invalid");
+
+        if (value === "") {
+          error.textContent = fields[i].message;
+          input.classList.add("invalid");
+          allValid = false;
+        } else if (fields[i].id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error.textContent = "Please enter a valid email, like name@example.com.";
+          input.classList.add("invalid");
+          allValid = false;
+        }
+      }
+
+      if (!allValid) {
+        alert("Please fill in all fields before submitting.");
+        return;
+      }
+
+      alert("Thank you! Your form was submitted successfully.");
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
